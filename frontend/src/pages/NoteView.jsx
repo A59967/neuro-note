@@ -63,7 +63,7 @@ export default function NoteView() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/notes/${id}`)
+    fetch(`https://neuro-note-production.up.railway.app/api/notes/${id}`)
       .then(res => res.json())
       .then(data => {
         if (!data.error) setNote(data);

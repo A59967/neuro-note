@@ -160,7 +160,7 @@ export default function Dashboard() {
   const recognitionRef = useRef(null);
   const navigate = useNavigate();
 
-  const API_URL = "http://localhost:5000/api";
+  const API_URL = "https://neuro-note-production.up.railway.app/api";
 
   useEffect(() => {
     if (localStorage.getItem("isFirstLogin") === "true") {
