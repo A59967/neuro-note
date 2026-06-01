@@ -583,7 +583,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden' }}>
+    <div className="dashboard-container">
 
       {/* FULL SCREEN OVERLAY FOR GENERATION */}
       {loading && currentView === "dashboard" && (
@@ -637,7 +637,7 @@ export default function Dashboard() {
       </div>
 
       {/* MAIN CONTENT AREA */}
-      <div style={{ flex: 1, padding: '40px', overflowY: 'auto' }}>
+      <div className="dashboard-main-content">
 
         {/* DASHBOARD */}
         {currentView === "dashboard" && (
@@ -862,8 +862,8 @@ export default function Dashboard() {
 
         {/* CHATBOT */}
         {currentView === "chatbot" && (
-           <div className="page-fade-in" style={{ display: 'flex', height: '100%', gap: '24px' }}>
-             <div className="card" style={{ width: '320px', display: 'flex', flexDirection: 'column', height: 'calc(100vh - 80px)', padding: '20px 12px' }}>
+           <div className={`page-fade-in ${selectedNote ? 'chatbot-container-active-chat' : 'chatbot-container-no-chat'}`} style={{ display: 'flex', height: '100%', gap: '24px' }}>
+             <div className="card chatbot-left-pane" style={{ width: '320px', display: 'flex', flexDirection: 'column', height: 'calc(100vh - 80px)', padding: '20px 12px' }}>
                <h3 style={{ padding: '0 8px 16px', borderBottom: '1px solid var(--border-light)', marginBottom: '16px', color: 'var(--text-dark)' }}>Select Reference Note</h3>
                <div style={{ overflowY: 'auto', flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                  {notesList.map(n => (
@@ -877,7 +877,7 @@ export default function Dashboard() {
                </div>
              </div>
 
-             <div className="card" style={{ flex: 1, height: 'calc(100vh - 80px)', display: 'flex', flexDirection: 'column', padding: '0', background: 'transparent' }}>
+             <div className="card chatbot-right-pane" style={{ flex: 1, height: 'calc(100vh - 80px)', display: 'flex', flexDirection: 'column', padding: '0', background: 'transparent' }}>
                {!selectedNote ? (
                  <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: 'var(--text-muted)' }}>
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '16px' }}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -886,8 +886,9 @@ export default function Dashboard() {
                  </div>
                ) : (
                  <>
-                   <div style={{ padding: '24px', borderBottom: '1px solid var(--border-light)', background: 'var(--hover-purple)', borderTopLeftRadius: '16px', borderTopRightRadius: '16px' }}>
-                     <h3 style={{ margin: 0, fontSize: '18px', color: 'var(--text-dark)' }}>Discussing: <span style={{ color: 'var(--primary)', fontWeight: '600' }}>{selectedNote.title}</span></h3>
+                   <div style={{ padding: '16px 24px', borderBottom: '1px solid var(--border-light)', background: 'var(--hover-purple)', borderTopLeftRadius: '16px', borderTopRightRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                     <h3 style={{ margin: 0, fontSize: '16px', color: 'var(--text-dark)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>Discussing: <span style={{ color: 'var(--primary)', fontWeight: '600' }}>{selectedNote.title}</span></h3>
+                     <button className="pill-btn inactive chatbot-mobile-back-btn" onClick={() => setSelectedNote(null)}>Change Note</button>
                    </div>
                    <div className="chat-container" id="chat-scroller" style={{ borderRadius: 0, border: 'none', background: 'transparent' }}>
                      {chatHistory.length === 0 ? (
@@ -1083,6 +1084,44 @@ export default function Dashboard() {
         )}
 
       </div>
+
+      {/* BOTTOM NAVIGATION FOR MOBILE */}
+      <div className="mobile-bottom-nav">
+        <div className={`mobile-nav-item ${currentView === 'home' ? 'active' : ''}`} onClick={() => navigate('/')}>
+          <IconHome />
+          <span>Home</span>
+        </div>
+        <div className={`mobile-nav-item ${currentView === 'dashboard' ? 'active' : ''}`} onClick={() => { setCurrentView('dashboard'); setSelectedNote(null); }}>
+          <IconDash />
+          <span>Generate</span>
+        </div>
+        <div className={`mobile-nav-item ${currentView === 'notes' ? 'active' : ''}`} onClick={() => { setCurrentView('notes'); setSelectedNote(null); }}>
+          <IconNotes />
+          <span>My Notes</span>
+        </div>
+        <div className={`mobile-nav-item ${currentView === 'chatbot' ? 'active' : ''}`} onClick={() => setCurrentView('chatbot')}>
+          <IconChat />
+          <span>Chatbot</span>
+        </div>
+        <div className={`mobile-nav-item ${currentView === 'profile' ? 'active' : ''}`} onClick={() => setCurrentView('profile')}>
+          <div className="mobile-profile-avatar" style={{ 
+            width: '20px', 
+            height: '20px', 
+            borderRadius: '50%', 
+            background: profileAvatar ? `url(${profileAvatar}) center/cover` : 'linear-gradient(135deg, #EEF2FF, var(--primary))', 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            color: '#fff', 
+            fontWeight: 'bold',
+            fontSize: '9px'
+          }}>
+            {!profileAvatar && (profileName?.[0]?.toUpperCase() || auth.currentUser?.email?.[0]?.toUpperCase() || "U")}
+          </div>
+          <span>Profile</span>
+        </div>
+      </div>
+
     </div>
   );
 }

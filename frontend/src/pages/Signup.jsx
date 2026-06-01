@@ -30,9 +30,9 @@ export default function Signup() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden' }}>
+    <div className="auth-container">
       {/* Left Pane */}
-      <div style={{ flex: 1, position: 'relative', background: 'linear-gradient(135deg, var(--secondary), var(--primary))', color: 'white', padding: '60px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflow: 'hidden' }} className="page-fade-in">
+      <div className="auth-left-pane signup-gradient page-fade-in">
         <div className="blob" style={{ background: '#f472b6', width: '300px', height: '300px', top: '20%', left: '30%' }}></div>
         <div className="blob" style={{ background: 'var(--primary)', width: '400px', height: '400px', bottom: '5%', right: '5%', animationDelay: '-2s' }}></div>
         
@@ -56,8 +56,8 @@ export default function Signup() {
       </div>
 
       {/* Right Pane Form */}
-      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#ffffff', position: 'relative' }} className="slide-in-left">
-        <div style={{ width: '100%', maxWidth: '400px', padding: '40px' }}>
+      <div className="auth-right-pane slide-in-left">
+        <div className="auth-form-wrapper">
           <h2 style={{ fontSize: '32px', marginBottom: '8px', color: 'var(--text-dark)' }}>Create an account</h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: '40px' }}>Get started right now.</p>
           

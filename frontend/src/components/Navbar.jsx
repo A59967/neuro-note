@@ -13,13 +13,7 @@ export default function Navbar() {
   }, [theme]);
 
   return (
-    <nav style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '24px 40px',
-      background: 'transparent'
-    }}>
+    <nav className="navbar-container" style={{ background: 'transparent' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
         <Link to="/" style={{ textDecoration: 'none', fontSize: '24px', fontWeight: '800', background: 'linear-gradient(135deg, #6C63FF, #8a84ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
