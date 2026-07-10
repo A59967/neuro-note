@@ -679,7 +679,7 @@ export default function Dashboard() {
             </div>
 
             <div className="card" style={{ position: 'relative', marginBottom: '40px' }}>
-              <div style={{ position: 'relative', display: 'flex', gap: '32px', marginBottom: '32px', borderBottom: '1px solid var(--border-light)', paddingBottom: '12px' }}>
+              <div className="dashboard-tabs" style={{ position: 'relative', display: 'flex', gap: '32px', marginBottom: '32px', borderBottom: '1px solid var(--border-light)', paddingBottom: '12px' }}>
                 <div style={{ padding: '8px 12px', cursor: 'pointer', fontWeight: activeTab === 'text' ? '600' : '500', color: activeTab === 'text' ? 'var(--primary)' : 'var(--text-muted)' }} onClick={() => setActiveTab("text")}>Paste Text</div>
                 <div style={{ padding: '8px 12px', cursor: 'pointer', fontWeight: activeTab === 'youtube' ? '600' : '500', color: activeTab === 'youtube' ? 'var(--primary)' : 'var(--text-muted)' }} onClick={() => setActiveTab("youtube")}>YouTube Link</div>
                 <div style={{ padding: '8px 12px', cursor: 'pointer', fontWeight: activeTab === 'file' ? '600' : '500', color: activeTab === 'file' ? 'var(--primary)' : 'var(--text-muted)' }} onClick={() => setActiveTab("file")}>Upload Audio</div>
@@ -847,9 +847,9 @@ export default function Dashboard() {
                         <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.5', flex: 1, textOverflow: 'ellipsis', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
                           {stripMarkdown(n.content)}
                         </p>
-                        <div style={{ display: 'flex', gap: '8px', marginTop: '20px' }}>
+                        <div className="notes-card-buttons" style={{ display: 'flex', gap: '8px', marginTop: '20px' }}>
                           <button className="pill-btn inactive" style={{ flex: 1, fontSize: '13px' }} onClick={(e) => { e.stopPropagation(); setSelectedNote(n); }}>View Note</button>
-                          <button className="pill-btn inactive" style={{ border: '1px solid #fee2e2', color: '#ef4444' }} onClick={(e) => { e.stopPropagation(); deleteNote(n._id); }}>Delete</button>
+                          <button className="pill-btn inactive" style={{ border: '1px solid #fee2e2', color: '#ef4444', flex: 1 }} onClick={(e) => { e.stopPropagation(); deleteNote(n._id); }}>Delete</button>
                         </div>
                       </div>
                     ))}
@@ -907,7 +907,7 @@ export default function Dashboard() {
                      )}
                    </div>
                    <div style={{ padding: '20px', borderTop: '1px solid var(--border-light)', borderBottomLeftRadius: '16px', borderBottomRightRadius: '16px' }}>
-                     <div style={{ display: 'flex', gap: '12px', background: 'var(--hover-purple)', padding: '8px', borderRadius: '99px', border: '1px solid var(--border-light)' }}>
+                      <div className="chatbot-input-wrapper" style={{ display: 'flex', gap: '12px', background: 'var(--hover-purple)', padding: '8px', borderRadius: '99px', border: '1px solid var(--border-light)' }}>
                        <input type="text" placeholder="Ask a question..." value={chatMessage} onChange={e => setChatMessage(e.target.value)} onKeyDown={e => e.key === 'Enter' && askChatbot()} style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', padding: '10px 16px', fontSize: '15px', color: 'var(--text-dark)' }} />
                        <button onClick={askChatbot} disabled={loading || !chatMessage.trim()} className="btn-primary shine" style={{ padding: '10px 24px', borderRadius: '99px', opacity: (loading || !chatMessage.trim()) ? 0.5 : 1 }}>Send Query</button>
                      </div>

@@ -20,7 +20,7 @@ export default function Navbar() {
           Neuro Note
         </Link>
       </div>
-      <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+      <div className="navbar-links" style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
         <div style={{ display: 'flex', gap: '8px', background: 'var(--border-light)', padding: '4px', borderRadius: '99px' }}>
            <button onClick={() => setTheme('light')} style={{ cursor: 'pointer', border: 'none', padding: '6px 12px', borderRadius: '99px', background: theme === 'light' ? '#fff' : 'transparent', color: theme === 'light' ? 'var(--primary)' : 'var(--text-muted)', display: 'flex', justifyContent: 'center', transition: 'all 0.3s', boxShadow: theme === 'light' ? '0 2px 8px rgba(0,0,0,0.05)' : 'none' }}>
              <IconSun />
